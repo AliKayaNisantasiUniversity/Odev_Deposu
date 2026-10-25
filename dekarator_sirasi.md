@@ -1,0 +1,3 @@
+1. **Yalnızca `@say` (Sonuç: ~21891):** Önbellek kullanılmadığı için her alt özyineleme adımı fonksiyonu baştan hesaplar ve çağrı sayacı her defasında artar.
+2. **`@say` üstte, `@lru_cache` altta (Sonuç: 39):** `@lru_cache` altta olduğu için önce önbellek mekanizması çalışır. Sonuçlar önbellekten alındığı için fonksiyon asıl gövdesine çok az kez iner; bu yüzden `@say` yalnızca cache'e girmeyen ilk hesaplamaları sayar.
+3. **`@lru_cache` üstte, `@say` altta (Sonuç: 21):** `@lru_cache` en dışta (üstte) yer alır. Fonksiyona gelen istekleri önce önbellek karşılar, cache'den dönenler sayaca takılmaz. Yalnızca ilk defa hesaplanan kök çağrılar sayıldığı için sayı çok daha düşük çıkar.
